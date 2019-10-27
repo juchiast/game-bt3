@@ -9,6 +9,9 @@ public class Control : MonoBehaviour
     Rigidbody2D body;
     int walking = 0;
     Camera cam;
+
+    GameObject height;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +19,7 @@ public class Control : MonoBehaviour
         ren = GetComponent<SpriteRenderer>();
         body = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+        height = GameObject.Find("height");
     }
 
     // Update is called once per frame
@@ -48,6 +52,9 @@ public class Control : MonoBehaviour
         animator.SetInteger("walking", walking);
 
         doCamera();
+
+        height.transform.localScale = new Vector3(1 + 2 * (transform.position.y + 2.25f), 1, 1);
+        height.transform.position = new Vector3(-8 + cam.transform.position.x, 4.4f + cam.transform.position.y, 0);
     }
 
     void doCamera() {
